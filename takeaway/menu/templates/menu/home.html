@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+{% extends 'menu/base.html' %}
+
+{% block head %}
+<meta charset="UTF-8">
+<title>Menu</title>
+<h1>The Boathouse</h1>
+<h1>Evening Menu</h1>
+{% endblock %}
+
+{% block content %}
+<h2>Starter</h2>
+<h2>___________</h2>
+{% for dish in object_list %}
+    {% if dish.course == "ST" %}
+        <h3>{{dish}}</h3>
+        <h3>£ {{dish.price|floatformat:2 }}</h3>
+    {% endif %}
+{% endfor %}
+
+<h2>Main</h2>
+<h2>___________</h2>
+{% for dish in object_list %}
+    {% if dish.course == "MA" %}
+        <h3>{{dish}}</h3>
+        <h3>£ {{dish.price|floatformat:2 }}</h3>
+    {% endif %}
+{% endfor %}
+
+<h2>Dessert</h2>
+<h2>___________</h2>
+{% for dish in object_list %}
+    {% if dish.course == "DE" %}
+        <h3>{{dish}}</h3>
+        <h3>£ {{dish.price|floatformat:2 }}</h3>
+    {% endif %}
+{% endfor %}
+{% endblock %}

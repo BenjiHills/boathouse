@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+{% extends 'menu/base.html' %}
+
+{% block head %}
+<meta charset="UTF-8">
+<title>Create_Order</title>
+<h1>Select From Our Menu</h1>
+{% endblock %}
+
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+<input type="submit" value="Checkout" name="Checkout">
+</form>
+{% endblock %}

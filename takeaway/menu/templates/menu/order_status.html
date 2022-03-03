@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+{% extends 'menu/base.html' %}
+
+{% block head %}
+<meta charset="UTF-8">
+<title>Order {{order.order_code}}</title>
+{% endblock %}
+
+{% block content %}
+<h2>Order {{order.order_code}}</h2>
+<table id="order">
+  <tr>
+    <th>Ordered at:</th>
+    <th>Customer</th>
+    <th>Items</th>
+    <th>Total</th>
+    <th>Status</th>
+  </tr>
+    <tr>
+        <td>{{order.time}}</td>
+        <td>{{order.customer.first_name}}{{order.customer.last_name}}{{order.customer}}</td>
+        <td>
+          <table>
+              <tr>
+                    <td>{{order.starter}}</td>
+                    <td>£{{order.starter.price|floatformat:2}}</td>
+          </tr>      
+          <tr>
+                    <td>{{order.main}}</td> 
+                    <td>£{{order.main.price|floatformat:2}}</td>
+          </tr> 
+          <tr> 
+                    <td>{{order.dessert}}</td>
+                  <td>£{{order.dessert.price|floatformat:2}}</td>
+          </tr> 
+          <tr>
+            {% if order.delivery == "DL" %}
+                <td>Delivery Charge</td>
+                <td>£ 3.00</td>
+            {% endif %}
+          </tr>
+        </table> 
+        </td>
+        <td> £{{order.get_total|floatformat:2 }}</td>
+        <td>{{order.get_status_display}}</td>
+        <td>
+        </td>
+    </tr>
+    <form action="" method="POST">
+        {% csrf_token %}
+        {{form.as_p}}
+    <input type="submit" value="Delivery" name="Delivery">
+    <input type="submit" value="Collection" name="Collection">
+    <input type="submit" value="Complete" name="Complete">
+ </table>
+
+{% endblock %}

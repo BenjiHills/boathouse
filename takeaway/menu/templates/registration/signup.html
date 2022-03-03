@@ -1,0 +1,10 @@
+<!DOCTYPE html>
+
+<meta charset="UTF-8">
+<title>Account Creation</title>
+<h1>Sign Up Here:</h1>
+<form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" />
+  </form>

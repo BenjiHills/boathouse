@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% extends 'menu/base.html' %}
+
+{% block head %}
+<meta charset="UTF-8">
+<title>Dishes on Menu</title>
+{% endblock %}
+
+{% block content %}
+<h2>Dishes on Menu</h2>
+<table id="dish">
+  <tr>
+    <th>Course</th>
+    <th>Name</th>
+    <th>Dietry</th>
+    <th>Price</th>
+    <th>Action</th>
+  </tr>
+	<tr>
+  {% for dish in object_list %}
+  </tr>
+    <tr>
+        <td>{{dish.get_course_display}}</td>
+        <td>{{dish.name }}</td>
+        <td>{{dish.get_diet_display}}</td>
+        <td>£{{dish.price|floatformat:2 }}</td>
+        <td></td>
+    </tr>
+  {% endfor %}
+  <form action="" method="POST">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <input type="submit" value="Add Dish" name="Add Dish">
+  </form>
+
+  {% endblock %}

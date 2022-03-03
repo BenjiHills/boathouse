@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+{% extends 'menu/base.html' %}
+
+{% block head %}
+<meta charset="UTF-8">
+<title>Checkout {{order.order_code}}</title>
+<h1>Confirm Order for:</h1>
+{% endblock %}
+
+{% block content %}
+<h3>{{order.starter}}</h3>
+<h3>£{{order.starter.price|floatformat:2 }}</h3>
+
+<h3>{{order.main}}</h3>
+<h3>£{{order.main.price|floatformat:2 }}</h3>
+
+<h3>{{order.dessert}}</h3>
+<h3>£{{order.dessert.price|floatformat:2 }}</h3>
+
+{% if order.delivery == "DL" %}
+<h3>Delivery Charge</h3>
+<h3>£ 3.00</h3>
+{% endif %}
+
+<h2>Total: £{{order.get_total|floatformat:2 }}</h2>
+
+
+<h4>Online Payment Coming Soon</h4>
+
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+<input type="submit" value="Order" name="Order">
+
+</form>
+{% endblock %}

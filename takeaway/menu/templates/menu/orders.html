@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+{% extends 'menu/base.html' %}
+
+{% block head %}
+<meta charset="UTF-8">
+<title>Customer Orders</title>
+{% endblock %}
+
+{% block content %}
+<h2>On Going Orders:</h2>
+<table>
+  <tr>
+    <th>Ordered at:</th>
+    <th>Customer</th>
+    <th>Items</th>
+    <th>Total</th>
+    <th>Status</th>
+    <th>Action</th>
+  </tr>
+    <tr>
+  {% for order in object_list %}
+  </tr>
+    <tr>
+        <td>{{order.time}}</td>
+        <td>{{order.customer.first_name}}{{order.customer.last_name}}{{order.customer}}</td>
+        <td>
+          <table>
+              <tr>
+                    <td>{{order.starter}}</td>
+                    <td>£{{order.starter.price|floatformat:2}}</td>
+          </tr>      
+          <tr>
+                    <td>{{order.main}}</td> 
+                    <td>£{{order.main.price|floatformat:2}}</td>
+          </tr> 
+          <tr> 
+                    <td>{{order.dessert}}</td>
+                  <td>£{{order.dessert.price|floatformat:2}}</td>
+          </tr> 
+          <tr>
+            {% if order.delivery == "DL" %}
+                <td>Delivery Charge</td>
+                <td>£ 3.00</td>
+            {% endif %}
+          </tr>
+        </table> 
+        </td>
+        <td> £{{order.get_total|floatformat:2 }}</td>
+        <td>{{order.get_status_display}}</td>
+        <td><a href="{% url 'order_status' order.pk %}"><button>Update Status</button></a></td>
+    </tr>
+{% endfor %}
+ </table>
+
+{% endblock %}
