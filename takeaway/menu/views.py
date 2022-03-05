@@ -9,7 +9,6 @@ def form_valid(self, form):
   form.instance.user = self.request.user
   return form_valid(form)
 
-
 class AccountCreateView(CreateView):
   
     #Allows the User to Create a New Account
@@ -22,14 +21,15 @@ class HomeView(ListView):
     model = Dish
     template_name = "menu/home.html"
 
+
     def get_queryset(self,):
         qs = super().get_queryset()
         return qs.order_by( Case( 
-                       When ( diet="ME", then=Value(0) ),
-                       When ( diet="FI", then=Value(1)  ),
-                       default = Value(2)
-                          )
-                    )
+                      When ( diet="ME", then=Value(0) ),
+                      When ( diet="FI", then=Value(1)  ),
+                      default = Value(2)
+        )
+        )
 
 class CreateOrderView(CreateView):
     model = Order
@@ -47,8 +47,8 @@ class CreateOrderView(CreateView):
 
 class CheckoutView(UpdateView):
     model = Order
-    template_name = "menu/conformation.html"
-    form_class = ConformationForm 
+    template_name = "menu/checkout.html"
+    form_class = CheckoutForm 
     success_url = "/"
 
     def form_valid(self, form):
@@ -63,17 +63,8 @@ class DishView(CreateView):
     success_url = "/dishes"
 
     def get_context_data(self, **kwargs):
-        kwargs['object_list'] = self.model.objects.exclude(course = "EM")
+        kwargs['object_list'] = self.model.objects.exclude(course = "EM").order_by("-course", "name")
         return super(DishView, self).get_context_data(**kwargs)
-    
-    def get_queryset(self,):
-        qs = super().get_queryset()
-        return qs.order_by( Case( 
-                       When ( diet="ST", then=Value(0) ),
-                       When ( diet="MA", then=Value(1)  ),
-                       default = Value(2)
-                          )
-                    ).order_by("name")
     
     def form_valid(self, form):
         form.instance.name = form.instance.name.title()
@@ -115,6 +106,12 @@ class DishDeleteView(DeleteView):
         model = Dish
         template_name = "menu/dish_delete.html"
         success_url = "/dishes"
+
+class DishUpdateView(UpdateView):
+    model = Dish
+    template_name = "menu/dish_update.html"
+    form_class = DishUpdateForm 
+    success_url = "/dishes"
 
 class OrderDeleteView(DeleteView): 
         model = Order

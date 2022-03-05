@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends 'menu/base.html' %}
+
+{% block head %}
+<meta charset="UTF-8">
+<title>Dish {{dish.id}}</title>
+<h2>Update Dish: {{dish.name}}</h2>
+
+{% endblock %}
+
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+<input type="submit" value="Update">
+</form>
+
+{% endblock %}

@@ -26,7 +26,9 @@
         <td>{{dish.descrip}}</td>
         <td>{{dish.get_diet_display}}</td>
         <td>£{{dish.price|floatformat:2 }}</td>
-        <td><a href="{% url 'dish_delete' dish.pk %}"><button>Delete</button></a></td>
+        <td><a href="{% url 'dish_update' dish.pk %}"><button>Update</button></a>
+          <a href="{% url 'dish_delete' dish.pk %}"><button>Delete</button></a>
+        </td>
     </tr>
   {% endfor %}
   <form action="" method="POST">
