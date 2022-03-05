@@ -14,8 +14,10 @@
 <h3>{{order.main}}</h3>
 <h3>£{{order.main.price|floatformat:2 }}</h3>
 
+{% if order.desert.price > 0 %}
 <h3>{{order.dessert}}</h3>
 <h3>£{{order.dessert.price|floatformat:2 }}</h3>
+{% endif %}
 
 {% if order.delivery == "DL" %}
 <h3>Delivery Charge</h3>
@@ -31,6 +33,6 @@
     {% csrf_token %}
     {{form.as_p}}
 <input type="submit" value="Order" name="Order">
-
 </form>
+<a href="{% url 'order_delete' order.pk %}"><button>Cancel</button></a>
 {% endblock %}

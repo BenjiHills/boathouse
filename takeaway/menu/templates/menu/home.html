@@ -13,7 +13,7 @@
 <h2>___________</h2>
 {% for dish in object_list %}
     {% if dish.course == "ST" %}
-        <h3>{{dish}}</h3>
+        <h3>{{dish}}</h3><h4>{{dish.descrip}}</h4>
         <h3>£ {{dish.price|floatformat:2 }}</h3>
     {% endif %}
 {% endfor %}
@@ -22,7 +22,7 @@
 <h2>___________</h2>
 {% for dish in object_list %}
     {% if dish.course == "MA" %}
-        <h3>{{dish}}</h3>
+        <h3>{{dish}}</h3><h4>{{dish.descrip}}</h4>
         <h3>£ {{dish.price|floatformat:2 }}</h3>
     {% endif %}
 {% endfor %}
@@ -31,7 +31,7 @@
 <h2>___________</h2>
 {% for dish in object_list %}
     {% if dish.course == "DE" %}
-        <h3>{{dish}}</h3>
+        <h3>{{dish}}</h3><h4>{{dish.descrip}}</h4>
         <h3>£ {{dish.price|floatformat:2 }}</h3>
     {% endif %}
 {% endfor %}

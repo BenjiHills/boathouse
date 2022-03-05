@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends 'menu/base.html' %}
+
+{% block head %}
+<meta charset="UTF-8">
+<title>Delete Dish</title>
+<h2>Are you sure You Want To Delete:</h2>
+<h2>{{dish.name}}</h2>
+{% endblock %}
+
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+<input type="submit" value="Yes">
+</form>
+<a href= "{% url 'dishes' %}"><button>No</button></a>
+{% endblock %}

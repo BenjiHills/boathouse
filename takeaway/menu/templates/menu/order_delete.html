@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+{% extends 'menu/base.html' %}
+
+{% block head %}
+<meta charset="UTF-8">
+<title>Order {{order.order_code}}</title>
+<h2>Are you sure You Want To Cancel This Order?</h2>
+
+{% endblock %}
+
+{% block content %}
+<form action="" method="POST">
+    {% csrf_token %}
+    {{form.as_p}}
+<input type="submit" value="Yes">
+</form>
+<a href="{% url 'checkout' order.pk %}"><button>No</button></a>
+{% endblock %}
