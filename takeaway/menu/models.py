@@ -1,5 +1,5 @@
-from typing import Collection
 from django.db import models
+from django.db.models import Q
 from django.core.validators import MinValueValidator
 from django.utils.crypto import get_random_string
 from django.contrib.auth.models import AbstractUser
@@ -23,6 +23,7 @@ class CustomUser(AbstractUser):
 class Dish(models.Model):
 
     # course
+    Empty = "EM"
     Starter = "ST"
     Main = "MA"
     Dessert = "DE"
@@ -32,11 +33,12 @@ class Dish(models.Model):
     Fish = "FI"
     Vegetarian = "VE"
 
-    course_type = [(Starter, "Starter"), (Main, "Main"), (Dessert, "Dessert")]
+    course_type = [(Empty, " "), (Starter, "Starter"), (Main, "Main"), (Dessert, "Dessert")]
     dietry_type = [(Meat, "Meat"), (Fish, "Fish"), (Vegetarian, "Vegetarian")]
 
     course = models.CharField(max_length = 2, choices= course_type, default = "ST")
-    name = models.CharField(max_length= 150)
+    name = models.CharField(max_length= 50, blank =True)
+    descrip= models.CharField(max_length= 150, blank =True, verbose_name= "description")
     diet = models.CharField(max_length = 2, choices= dietry_type, blank = True)
     price = models.FloatField(validators=[MinValueValidator(0.00)], default=0.00)
 
@@ -62,15 +64,18 @@ class Order(models.Model):
     time = models.DateTimeField(auto_now_add = True, editable= False)
     order_code = models.CharField(max_length=6, primary_key=True, editable=False, unique=True)
     customer = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default = id(CustomUser))
-    starter  = models.ForeignKey(Dish, on_delete=models.PROTECT, limit_choices_to={'course': "ST"}, related_name='starter', blank = True, null = True)
-    main = models.ForeignKey(Dish, on_delete=models.PROTECT, limit_choices_to={'course': "MA"}, related_name='main', blank = True, null = True)
-    dessert = models.ForeignKey(Dish, on_delete=models.PROTECT, limit_choices_to={'course': "DE"}, related_name='dessert', blank = True, null = True)
-    delivery = models.CharField(max_length = 2, choices= delivery_type, default = "Y")
+    starter  = models.ForeignKey(Dish, on_delete=models.SET_DEFAULT, limit_choices_to= Q(course = "ST") | Q(course = "EM"), related_name='starter', default= id(1))
+    main = models.ForeignKey(Dish, on_delete=models.CASCADE, limit_choices_to=Q(course = "MA") | Q(course = "EM"), related_name='main', default= id(1))
+    dessert = models.ForeignKey(Dish, on_delete=models.CASCADE, limit_choices_to=Q(course = "DE") | Q(course = "EM"), related_name='dessert', default= id(1))
+    delivery = models.CharField(max_length = 2, choices= delivery_type, default = "DL")
     status = models.CharField(max_length = 2, choices= status_type, default = "OR")
 
     @property
     def get_total(self):
-        total = self.starter.price + self.main.price + self.dessert.price
+        prices =[self.starter.price, self.main.price, self.dessert.price]
+        total = 0
+        for price in prices:
+                total += price
         if self.delivery == "DL":
             total += 3
         return total

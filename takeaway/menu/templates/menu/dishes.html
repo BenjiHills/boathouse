@@ -12,6 +12,7 @@
   <tr>
     <th>Course</th>
     <th>Name</th>
+    <th>Description</th>
     <th>Dietry</th>
     <th>Price</th>
     <th>Action</th>
@@ -22,9 +23,10 @@
     <tr>
         <td>{{dish.get_course_display}}</td>
         <td>{{dish.name }}</td>
+        <td>{{dish.descrip}}</td>
         <td>{{dish.get_diet_display}}</td>
         <td>£{{dish.price|floatformat:2 }}</td>
-        <td></td>
+        <td><a href="{% url 'dish_delete' dish.pk %}"><button>Delete</button></a></td>
     </tr>
   {% endfor %}
   <form action="" method="POST">

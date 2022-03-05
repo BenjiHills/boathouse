@@ -30,7 +30,7 @@ class ConformationForm(forms.ModelForm):
 class CreateDishForm(forms.ModelForm):
     class Meta:
         model = Dish
-        fields = ("course", "name", "diet", "price")
+        fields = ("course", "name", "descrip", "diet", "price")
 
 class OrderStatusForm(forms.ModelForm):
     class Meta:
