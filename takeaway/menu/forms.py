@@ -18,8 +18,7 @@ class OrderCreateForm(forms.ModelForm):
         model = Order
         fields = ("starter", "main", "dessert", "delivery")
 
-class ConformationForm(forms.ModelForm):
-    class Meta:
+class CheckoutForm(forms.ModelForm):
         model = Order
         fields = ("status",)
         
@@ -42,5 +41,7 @@ class OrderStatusForm(forms.ModelForm):
         }
 
 
-
- 
+class DishUpdateForm(forms.ModelForm):
+    class Meta:
+        model = Dish
+        fields = ("course", "name", "descrip", "diet", "price")
