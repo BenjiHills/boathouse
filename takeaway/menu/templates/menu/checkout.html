@@ -8,13 +8,17 @@
 {% endblock %}
 
 {% block content %}
+{% if order.starter.price != 0.0 %}
 <h3>{{order.starter}}</h3>
 <h3>£{{order.starter.price|floatformat:2 }}</h3>
+{% endif %}
 
+{% if order.main.price != 0.0 %}
 <h3>{{order.main}}</h3>
 <h3>£{{order.main.price|floatformat:2 }}</h3>
+{% endif %}
 
-{% if order.desert.price > 0 %}
+{% if order.dessert.price != 0.0 %}
 <h3>{{order.dessert}}</h3>
 <h3>£{{order.dessert.price|floatformat:2 }}</h3>
 {% endif %}

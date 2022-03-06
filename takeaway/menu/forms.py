@@ -19,6 +19,7 @@ class OrderCreateForm(forms.ModelForm):
         fields = ("starter", "main", "dessert", "delivery")
 
 class CheckoutForm(forms.ModelForm):
+    class Meta:
         model = Order
         fields = ("status",)
         
