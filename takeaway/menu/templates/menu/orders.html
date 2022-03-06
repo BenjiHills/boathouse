@@ -15,6 +15,7 @@
     <th>Items</th>
     <th>Total</th>
     <th>Status</th>
+    <th>Delivery</th>
     <th>Action</th>
   </tr>
     <tr>
@@ -47,6 +48,11 @@
         </td>
         <td> £{{order.get_total|floatformat:2 }}</td>
         <td>{{order.get_status_display}}</td>
+        {% if order.delivery == "DL" %}
+        <td>Yes</td>
+        {% else %}
+        <td>No</td>
+        {% endif %}
         <td><a href="{% url 'order_status' order.pk %}"><button>Update Status</button></a></td>
     </tr>
 {% endfor %}
