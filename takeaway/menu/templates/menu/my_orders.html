@@ -14,6 +14,7 @@
     <th>Order ID</th>
     <th>Items</th>
     <th>Total</th>
+    <th>Delivery</th>
     <th>Status</th>
   </tr>
     <tr>
@@ -45,6 +46,11 @@
         </table> 
         </td>
         <td> £{{order.get_total|floatformat:2 }}</td>
+        {% if order.delivery == "DL" %}
+        <td>Yes</td>
+        {% else %}
+        <td>No</td>
+        {% endif %}
         <td>{{order.get_status_display}}</td>
     </tr>
 {% endfor %}
