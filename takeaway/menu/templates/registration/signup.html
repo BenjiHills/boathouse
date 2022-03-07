@@ -1,10 +1,16 @@
 <!DOCTYPE html>
+
 {% extends 'menu/base.html' %}
+{% block head %}
 <meta charset="UTF-8">
 <title>Account Creation</title>
+{% endblock %}
+
+{% block content %}
 <h1>Sign Up Here:</h1>
 <form action="" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
     <input type="submit" />
   </form>
+{% endblock %}

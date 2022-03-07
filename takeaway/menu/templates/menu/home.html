@@ -4,36 +4,59 @@
 {% block head %}
 <meta charset="UTF-8">
 <title>Menu</title>
-<h1>The Boathouse</h1>
+
 
 {% endblock %}
 
 {% block content %}
-<h1>Evening Menu</h1>
-<h2>Starter</h2>
-<h2>___________</h2>
-{% for dish in object_list %}
-    {% if dish.course == "ST" %}
-        <h3>{{dish}}</h3><h4>{{dish.descrip}}</h4>
-        <h3>£ {{dish.price|floatformat:2 }}</h3>
-    {% endif %}
-{% endfor %}
+    <div class="menu_div">
+        {% if request.user.is_authenticated %}  
+            <h1 class="menu_title">Welcome Back {{request.user.first_name}}</h1>
+        {% else %}
+            <h1 class="menu_title">Log in or create an account to try our new takeaway app!</h1>
+        {% endif %}
+        <h2>___________</h2>
+        <h1 class="menu_title">Evening Menu</h1>
 
-<h2>Main</h2>
-<h2>___________</h2>
-{% for dish in object_list %}
-    {% if dish.course == "MA" %}
-        <h3>{{dish}}</h3><h4>{{dish.descrip}}</h4>
-        <h3>£ {{dish.price|floatformat:2 }}</h3>
-    {% endif %}
-{% endfor %}
 
-<h2>Dessert</h2>
-<h2>___________</h2>
-{% for dish in object_list %}
-    {% if dish.course == "DE" %}
-        <h3>{{dish}}</h3><h4>{{dish.descrip}}</h4>
-        <h3>£ {{dish.price|floatformat:2 }}</h3>
-    {% endif %}
-{% endfor %}
+        <h2 class="course_title">Starter</h2>
+        <h2 class="divider">_____________________</h2>
+
+        {% for dish in object_list %}
+            {% if dish.course == "ST" %}
+                <div class="item_div">
+                <h3 class = "item">{{dish}}</h3>
+                <h3 class = "discrip">{{dish.descrip}}</h3>
+                <h3 class = "price">£ {{dish.price|floatformat:2 }}</h3>
+                </div>
+            {% endif %}
+        {% endfor %}
+
+        <h2 class="course_title">Main</h2>
+        <h2 class="divider">_____________________</h2>
+        {% for dish in object_list %}
+            {% if dish.course == "MA" %}
+                <div class="item_div">
+                <h3 class = "item">{{dish}}</h3>
+                <h3 class = "discrip">{{dish.descrip}}</h3>
+                <h3 class = "price">£ {{dish.price|floatformat:2 }}</h3>
+                </div>
+                {% endif %}
+        {% endfor %}
+    
+
+
+        <h2 class="course_title">Dessert</h2>
+        <h2 class="divider">_____________________</h2>
+        {% for dish in object_list %}
+            {% if dish.course == "DE" %}
+                <div class="item_div">
+                <h3 class = "item">{{dish}}</h3>
+                <h3 class = "discrip">{{dish.descrip}}</h3>
+                <h3 class = "price">£ {{dish.price|floatformat:2 }}</h3>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+
 {% endblock %}

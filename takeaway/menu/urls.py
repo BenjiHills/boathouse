@@ -1,6 +1,8 @@
 from django.urls import path, include
 from . import views
 
+# path("url location", attached view, name given the the url which can then be used else where in the app. e.g. href )
+
 urlpatterns = [
     path("signup/", views.AccountCreateView.as_view(), name="signup"),
     path("accounts/", include("django.contrib.auth.urls"), name="login"),

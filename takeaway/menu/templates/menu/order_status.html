@@ -46,13 +46,14 @@
         <td>
         </td>
     </tr>
-  </table>  
+   </table>
+   <div style="display: inline-block; margin-top: 20px;"> 
     <form action="" method="POST">
         {% csrf_token %}
         {{form.as_p}}
     <input type="submit" value="Delivery" name="Delivery">
     <input type="submit" value="Collection" name="Collection">
     <input type="submit" value="Complete" name="Complete">
- 
-
+    </form> 
+    </div>
 {% endblock %}
