@@ -1,3 +1,182 @@
-body {background-color: #C2B9B0;
 
+/* Global Styles */
+
+*{
+    margin: 0;
+
+}
+
+
+body {background-color: #eee1d4;
+
+}
+
+table {
+    border-collapse: collapse;
+    width: 90%;
+    margin-left: 20px;
+    margin-bottom: 20px;
+    
+}
+th {
+    
+    border-top: 2px solid rgb(0, 0, 0);
+    border-bottom: 2px solid rgb(0, 0, 0);
+    text-align: left;
+    margin-top: 40px;
+    background-color: transparent;
+    color: black;
+
+    
+}
+
+td {
+    border-bottom: 1px solid rgb(0, 0, 0);
+    text-align: left;
+}
+
+button, input[type=submit] {
+    background-color: transparent;
+    color: black;
+    padding: 14px 20px;
+    margin-left: 40%;
+    margin-top: 0%;
+    margin-bottom: 1%;
+    border: 2px solid rgb(0, 0, 0);
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 15px ;
+}
+ a{
+    margin-left: 30px;
+    margin-top: 20px;
+    padding-top: 20px;
+    text-decoration: None;
+    font-weight: bold;
+    font-size: 25px;
+    color: whitesmoke; 
+  }
+
+/* Navbar Styles */
+
+.topnav{
+    background-color: #123c69; 
+    text-align: left;
+    margin-bottom: 50px;
+    width: 100%;
+    border: none;
+    height: 150px;
+    padding: 1px 0;
+    Position:relative;
+    
+      
+  }
+
+.customer_div{
+    margin-top: 70px;
+    margin-left: 395px;
+    padding: 1%
+
+}
+ .logo_div {
+    width: auto;
+    margin-top: -135px;
+    margin-left: 850px;
+    Position:absolute;
+    text-align: center;
+
+ }
+
+ .alt_div {
+    width: auto;
+    margin-left: 850px;
+    
+ }
+.logo{
+  max-width: 150px;
+  border-radius: 5px;
+  margin: auto;
+}
+
+.staff_div{
+    width: auto;
+    margin-top: -50px;
+    margin-left: 1100px;
+    
+}
+
+.login_div{
+    width: auto;
+    margin-top: 1000px;
+    
+    
+    
+}
+
+.logout_div{
+    width: auto;
+    margin-top: -55px;
+    margin-left: 1600px;
+    display: inline-flexbox;
+    
+}
+
+.logout_button{
+    color: whitesmoke; 
+    border-color: whitesmoke;
+    width: 120px;
+    height: auto;
+}
+
+/* Menu Styles */
+
+.menu_title{
+    margin-top: 20px;
+    font-size: 45px;
+}
+
+.course_title{
+    
+    margin-top: 35px;
+    font-size: 35px;
+}
+
+.divider{
+    margin-top: -15px;
+    margin-bottom: 15px ;
+}
+
+.menu_div{
+    text-align: center;
+    margin-top: 20px;
+
+}
+
+.item_div{
+    text-align: center;
+}
+.item{
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-right: 2.5px;
+    font-size: 25px;
+}
+
+.discrip{
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 2.5px;
+    font-size: 20px;
+    font-style: oblique;
+}
+
+.price{
+    display: inline-block;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    margin-left: 10px;
+    font-size: 20px;
+    
 }

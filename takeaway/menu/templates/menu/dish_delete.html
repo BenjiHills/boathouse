@@ -4,11 +4,13 @@
 {% block head %}
 <meta charset="UTF-8">
 <title>Delete Dish</title>
-<h2>Are you sure You Want To Delete:</h2>
-<h2>{{dish.name}}</h2>
+
 {% endblock %}
 
 {% block content %}
+<h2>Are you sure You Want To Delete:</h2>
+<h2>{{dish.name}}</h2>
+
 <form action="" method="POST">
     {% csrf_token %}
     {{form.as_p}}

@@ -4,13 +4,14 @@
 {% block head %}
 <meta charset="UTF-8">
 <title>Create_Order</title>
-<h1>Select From Our Menu</h1>
 {% endblock %}
 
 {% block content %}
+<h1>Select From Our Menu</h1>
 <form action="" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
 <input type="submit" value="Checkout" name="Checkout">
 </form>
+<p>£ 3.00 Delivery Charge On All Orders Within 5 Miles</p>
 {% endblock %}

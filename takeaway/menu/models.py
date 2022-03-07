@@ -7,6 +7,7 @@ from .managers import CustomUserManager
 from django.utils.translation import gettext_lazy as _
 import datetime
 
+# Creates a custom user from Djangos default user model which uses an email adress instead of a user name
 
 class CustomUser(AbstractUser):
     username = None
@@ -21,6 +22,7 @@ class CustomUser(AbstractUser):
         return self.email
 
 class Dish(models.Model):
+# Reduces the inputs into the database field to two letters saving data space for choice based fields
 
     # course
     Empty = "EM"
@@ -33,8 +35,12 @@ class Dish(models.Model):
     Fish = "FI"
     Vegetarian = "VE"
 
+# Uses tuples to define what string appears when a user is making a choices or the data is called upon from the database converting the two letter abreviation back to the full word
+
     course_type = [(Empty, " "), (Starter, "Starter"), (Main, "Main"), (Dessert, "Dessert")]
     dietry_type = [(Meat, "Meat"), (Fish, "Fish"), (Vegetarian, "Vegetarian")]
+
+# Defines what fields are available in the table, their type, and any behavior associated with that field
 
     course = models.CharField(max_length = 2, choices= course_type, default = "ST")
     name = models.CharField(max_length= 50, blank =True)
@@ -58,17 +64,22 @@ class Order(models.Model):
     Delivery = "DL"
     Collection = "CL"
 
+
+
     status_type = [(Ordering, "Ordering"),(Pending, "Pending"), (Delivery, "Out for Delivery"), (Collect, "Ready for Collection"), (Complete, "Complete")]
     delivery_type = [(Delivery, "Delivery"),(Collection, "Collection")]
 
-    time = models.DateTimeField(auto_now_add = True, editable= False)
+    time = models.DateTimeField(auto_now_add = True, editable= False) #automatically adds the time of when the data was added to the database
     order_code = models.CharField(max_length=6, primary_key=True, editable=False, unique=True)
-    customer = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default = id(CustomUser))
-    starter  = models.ForeignKey(Dish, on_delete=models.SET_DEFAULT, limit_choices_to= Q(course = "ST") | Q(course = "EM"), related_name='starter', default= id(1))
-    main = models.ForeignKey(Dish, on_delete=models.CASCADE, limit_choices_to=Q(course = "MA") | Q(course = "EM"), related_name='main', default= id(1))
-    dessert = models.ForeignKey(Dish, on_delete=models.CASCADE, limit_choices_to=Q(course = "DE") | Q(course = "EM"), related_name='dessert', default= id(1))
+    customer = models.ForeignKey(CustomUser, on_delete=models.CASCADE, default = id(CustomUser)) #automatically adds the user of added the data to the database
+    starter  = models.ForeignKey(Dish, on_delete=models.SET_DEFAULT, limit_choices_to= Q(course = "ST") | Q(course = "EM"), related_name='starter', default= id(1)) # defaults the field input to a blank dish worth £0 
+    main = models.ForeignKey(Dish, on_delete=models.SET_DEFAULT, limit_choices_to=Q(course = "MA") | Q(course = "EM"), related_name='main', default= id(1))
+    dessert = models.ForeignKey(Dish, on_delete=models.SET_DEFAULT, limit_choices_to=Q(course = "DE") | Q(course = "EM"), related_name='dessert', default= id(1))
     delivery = models.CharField(max_length = 2, choices= delivery_type, default = "DL")
     status = models.CharField(max_length = 2, choices= status_type, default = "OR")
+
+
+# Property tag allow the total to be called up as a variable of the model class to total up a final price of the order
 
     @property
     def get_total(self):
@@ -79,6 +90,8 @@ class Order(models.Model):
         if self.delivery == "DL":
             total += 3
         return total
+
+# Creates a randon six letter sting to be used as an orders primary key in the database
 
     def save(self, *args, **kwargs):
         if not self.order_code:

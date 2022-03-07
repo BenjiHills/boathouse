@@ -15,7 +15,6 @@
     <th>Description</th>
     <th>Dietry</th>
     <th>Price</th>
-    <th>Delivery</th>
     <th>Action</th>
   </tr>
 	<tr>
@@ -27,11 +26,17 @@
         <td>{{dish.descrip}}</td>
         <td>{{dish.get_diet_display}}</td>
         <td>£{{dish.price|floatformat:2 }}</td>
-        <td><a href="{% url 'dish_update' dish.pk %}"><button>Update</button></a>
+        
+        <td>
+          <div style="display: inline-flex; margin-top: -20px;"> 
+          <a href="{% url 'dish_update' dish.pk %}"><button>Update</button></a>
           <a href="{% url 'dish_delete' dish.pk %}"><button>Delete</button></a>
+          </div>
         </td>
+
     </tr>
   {% endfor %}
+  
   <form action="" method="POST">
     {% csrf_token %}
     {{ form.as_p }}
