@@ -51,23 +51,23 @@ Running the Server:
    
     This will require installation of Python and the Django framework. Full requirements in requirments.txt
    
- The project is also hosted here:
+ The project is also hosted here: https://benjihills.pythonanywhere.com/
      
 # New to Django
 
-    Hi Gousto, thanks for checking out my current project and I hope you enjoy it! Feel free add, change, and delete as much as you like. Also sorry about the mess I'm currently putting the front end on so things are a bit jumbled around but should be fully working. I noticed that Django isn't part of your tech stack, so I thought I'd lend a hand in case you were wondering where best to go to look at my work. Django handles some of the work for me so places you can go where the work is 100% my own are;
+Hi Gousto, thanks for checking out my current project and I hope you enjoy it! Feel free add, change, and delete as much as you like. Also sorry about the mess I'm currently putting the front end on so things are a bit jumbled around (e.g. logout button keeps escaping the banner) but should be fully working. I noticed that Django isn't part of your tech stack, so I thought I'd lend a hand in case you were wondering where best to go to look at my work. Django handles some of the work for me so places you can go where the work is 100% my own are;
 
-        menu/models.py ----- These models allow me to interact with the sqlite database, by allowing be to create data table, fields, how that data is stored and manipulated.
+menu/models.py ----- These models allow me to interact with the sqlite database, by allowing be to create data table, fields, how that data is stored and manipulated.
 
-        menu/views.py ----- The view function dictates how the models interact with the webpages via controlling the web request and web responses. 
+menu/views.py ----- The view function dictates how the models interact with the webpages via controlling the web request and web responses. 
 
-        menu/urls.py ----- sets up the url for where a webpage will be located and which view function it is attached to that web page.
+menu/urls.py ----- sets up the url for where a webpage will be located and which view function it is attached to that web page.
 
-        menu/forms.py ----- Uses Django's in built classes to quickly define forms to be used in my templates
+menu/forms.py ----- Uses Django's in built classes to quickly define forms to be used in my templates
 
-        menu/templates ----- This folder houses most of the front end work and where I write the html for the app. This are then related back to the relavent view where they can be displayed on the appropriate web page via urls.py through views. From templates I'm also able to call functions {% %} and variables {{ }}.
+menu/templates ----- This folder houses most of the front end work and where I write the html for the app. This are then related back to the relavent view where they can be displayed on the appropriate web page via urls.py through views. From templates I'm also able to call functions {% %} and variables {{ }}.
 
-        takeaway/statics ---- contains all the css and images I've used so far in the project 
+takeaway/statics ---- contains all the css and images I've used so far in the project 
 
 
 
